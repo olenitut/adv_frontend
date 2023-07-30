@@ -1,8 +1,6 @@
-import { Suspense } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import classNames from "helpers/classNames/classNames";
-import AboutAsync from "pages/About/About.async";
-import MainAsync from "pages/Main/Main.async";
+import { Link } from "react-router-dom";
+import classNames from "shared/lib/classNames/classNames";
+import { AppRouter } from "./providers/router";
 import { Theme, useTheme } from "app/providers/theme/themeContext";
 
 const App = () => {
@@ -19,12 +17,7 @@ const App = () => {
       >
         {theme === Theme.LIGHT ? "Dark mode" : "Light mode"}
       </button>
-      <Suspense fallback={<div>Loading</div>}>
-        <Routes>
-          <Route path="/about" element={<AboutAsync />} />
-          <Route path="/" element={<MainAsync />} />
-        </Routes>
-      </Suspense>
+      <AppRouter />
     </div>
   );
 };
