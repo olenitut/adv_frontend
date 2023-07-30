@@ -1,10 +1,9 @@
 import { Suspense } from "react";
-import classNames from "./helpers/classNames/classNames";
-import { Routes, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
-import AboutAsync from "./pages/About/About.async";
-import MainAsync from "./pages/Main/Main.async";
-import { Theme, useTheme } from "./state/theme/themeContext";
+import { Routes, Route, Link } from "react-router-dom";
+import classNames from "helpers/classNames/classNames";
+import AboutAsync from "pages/About/About.async";
+import MainAsync from "pages/Main/Main.async";
+import { Theme, useTheme } from "app/providers/theme/themeContext";
 
 const App = () => {
   const { theme, setTheme } = useTheme();
