@@ -7,7 +7,11 @@ const AppRouter = () => {
     <Suspense fallback={<div>Loading</div>}>
       <Routes>
         {routeConfig.map((el) => (
-          <Route path={el.path} element={el.element} key={el.path} />
+          <Route
+            path={el.path}
+            element={<div className="page">{el.element}</div>}
+            key={el.path}
+          />
         ))}
       </Routes>
     </Suspense>
