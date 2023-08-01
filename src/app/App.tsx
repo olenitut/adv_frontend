@@ -17,14 +17,6 @@ const App = () => {
         <div className="d-flex">
           <SideBar />
           <AppRouter />
-          <div>{t("translate")}</div>
-          <button
-            onClick={() =>
-              i18n.changeLanguage(i18n.language === "ru" ? "en" : "ru")
-            }
-          >
-            {t("translate")}
-          </button>
         </div>
       </div>
     </Suspense>
