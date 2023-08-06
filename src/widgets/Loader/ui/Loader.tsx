@@ -1,16 +1,12 @@
+import { Loader } from "shared/ui/Loader";
 import styles from "./Loader.module.scss";
 
-const Loader = () => {
+const PageLoader = () => {
   return (
     <div className={styles.wrap}>
-      <div className={styles.loader}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div className={styles.gradient}></div>
+      <Loader />
     </div>
   );
 };
 
-export default Loader;
+export default PageLoader;
