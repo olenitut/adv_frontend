@@ -16,6 +16,7 @@ const SideBar: FC<ISideBArProps> = ({ className }) => {
   };
   return (
     <div
+      data-testid="sidebar"
       className={classNames(className, styles.sidebar, {
         [styles.collapsed]: collapsed,
       })}
