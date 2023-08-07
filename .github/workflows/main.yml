@@ -1,23 +1,26 @@
 yaml
-name: Animal Farm NodeJS CI
+name: testing and building
 on:
   push:
-    branches:
-      - main
+    branches: [master]
   pull_request:
-    branches:
-      - main
+    branches: [master]
 jobs:
-  build:
+  pipeline: 
     runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '18.x'
-    - name: Run Yarn 
-      run: yarn
-    - name: Run tests
-      run: yarn test
+    strategy: 
+      matrix: 
+        node-version: [ 17.x ]
+    
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Staring Node.js ${{ matrix.node-version }} 
+        uses: actions/setup-node@v1
+        with: 
+          node-version: ${{ matrix.node-version }}
+      - name: install modules 
+        run: npm install 
+      - name: build project prod
+        run: npm run build:prod
+      - name: test
+        run: npm run test
