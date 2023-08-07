@@ -8,7 +8,7 @@ export const buildPlugins = ({
   paths,
   isDev,
 }: IBuildOptions): webpack.WebpackPluginInstance[] => {
-  return [
+  const plugins = [
     new HTMLWebpackPlugin({
       template: paths.html,
     }),
@@ -17,12 +17,17 @@ export const buildPlugins = ({
       filename: "css/[name].[contenthash:8].css",
       chunkFilename: "css/[name].[contenthash:8].css",
     }),
-    new BundleAnalyzerPlugin({
-      openAnalyzer: false,
-    }),
     new webpack.DefinePlugin({
       __IS_DEV__: isDev,
     }),
-    new webpack.HotModuleReplacementPlugin(),
   ];
+
+  return isDev
+    ? plugins.concat([
+        new BundleAnalyzerPlugin({
+          openAnalyzer: false,
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+      ])
+    : plugins;
 };
