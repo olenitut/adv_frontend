@@ -4,16 +4,21 @@ import { AppRouter } from "./providers/router";
 import { useTheme } from "app/providers/theme/themeContext";
 import { Navbar } from "widgets/NavBar";
 import { SideBar } from "widgets/SideBar";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
+import { Modal } from "shared/ui/Modal";
 
 const App = () => {
   const { theme } = useTheme();
-  const { t, i18n } = useTranslation();
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <Suspense fallback="">
       <div className={classNames("app", theme)}>
         <Navbar />
+        <button onClick={() => setIsOpen((prev) => !prev)}>toggle modal</button>
+        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          <div>hello</div>
+        </Modal>
         <div className="d-flex">
           <SideBar />
           <AppRouter />
