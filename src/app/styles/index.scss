@@ -4,10 +4,10 @@
 @import "./variables/global.scss";
 
 .app {
-  font: var(--font-m);
+  min-height: 100vh;
   background-color: var(--bg-color);
   color: var(--primary-color);
-  min-height: 100vh;
+  font: var(--font-m);
 }
 
 .d-flex {

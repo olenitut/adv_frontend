@@ -1,5 +1,6 @@
 import { FC, ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import classNames from "shared/lib/classNames/classNames";
+import { Portal } from "shared/ui/Portal";
 
 import styles from "./Modal.module.scss";
 
@@ -43,19 +44,21 @@ const Modal: FC<Props> = ({ children, isOpen, onClose }) => {
   }, [keydownHandler]);
 
   return (
-    <div
-      className={classNames(
-        styles.modal,
-        isOpen && styles.open,
-        isClosing && styles.isClosing
-      )}
-    >
-      <div className={styles.overlay} onClick={closeHandler}>
-        <div className={styles.content} onClick={preventPropagation}>
-          {children}
+    <Portal>
+      <div
+        className={classNames(
+          styles.modal,
+          isOpen && styles.open,
+          isClosing && styles.isClosing
+        )}
+      >
+        <div className={styles.overlay} onClick={closeHandler}>
+          <div className={styles.content} onClick={preventPropagation}>
+            {children}
+          </div>
         </div>
       </div>
-    </div>
+    </Portal>
   );
 };
 
